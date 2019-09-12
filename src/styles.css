@@ -1,1 +1,23 @@
-/* You can add global styles to this file, and also import other style files */
+body{
+    /* background-color: aqua; */
+}
+
+form{
+    margin: 0px 16px;
+}
+
+div.form-group input.valid{
+    border: 1px solid #dc3545;
+}
+
+div.form-group label:first-child{
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+.wrapper{
+    background-color: #445577;
+    width: 30%;
+    margin: auto;
+    margin-top: 10%;
+}
