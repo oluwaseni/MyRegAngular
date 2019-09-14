@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, CanActivate, Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { UserService } from '../shared/user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class AuthGuard implements CanActivate {
   /**
    *
    */
-  constructor(private router:Router) {
+  constructor(private router:Router, private service: UserService) {
     
   }
 
@@ -24,10 +25,24 @@ export class AuthGuard implements CanActivate {
   boolean{
 
     if(localStorage.getItem('token') != null)
+    {
+      let roles = next.data['permittedRoles'] as Array<string>;
+      if(roles){
+        if(this.service.roleMatch(roles))return true;
+        else
+        {
+          this.router.navigate(['/forbiden']);
+          return false;
+        }
+      }
     return true;
+    
+    }
     else 
+    {
     this.router.navigate(['user/login']);
     return false
+    }
   }
   
 }

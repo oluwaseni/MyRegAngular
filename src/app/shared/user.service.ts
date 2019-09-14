@@ -9,7 +9,7 @@ export class UserService {
 
   readonly baseURI = 'http://localhost:49755/API';
  
-
+  element: any={}
   constructor(private fb: FormBuilder, private http:HttpClient) { }
 
   formModel?:any = this.fb.group({
@@ -47,6 +47,19 @@ export class UserService {
     return this.http.post(this.baseURI+'/ApplicationUser/Register', body);
   }
 
+  
+  Adminregistration(){
+    var body= {
+      UserName: this.formModel.value.username,
+      Email: this.formModel.value.email,
+      Fullname: this.formModel.value.Fullname,
+      Password: this.formModel.value.Passwords.Password
+    };
+
+
+    return this.http.post(this.baseURI+'/ApplicationUser/AdminRegister', body);
+  }
+
   login(formData){
     return this.http.post(this.baseURI+'/ApplicationUser/Login', formData);
 
@@ -58,4 +71,20 @@ export class UserService {
     return this.http.get(this.baseURI+'/UserProfile'); // ,{headers : tokenHeader}
   }
 
+  roleMatch(allowedRoles): boolean{
+    var isMatch = false;
+    var payLoad = JSON.parse(window.atob(localStorage.getItem('token').split('.')[1]));
+    var userRole = payLoad.role;
+
+    allowedRoles.forEach(element => {
+      if(userRole == element){
+        isMatch = true;
+        return false;
+      }
+      
+    });
+
+
+    return isMatch;
+  }
 }

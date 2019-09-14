@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 export class RegistrationComponent implements OnInit {
 
 
+  // element: any={}
+
   // formModel?: any ={}
   constructor(public service:UserService, private toastr: ToastrService, private router: Router) { }
 
@@ -33,7 +35,7 @@ export class RegistrationComponent implements OnInit {
           this.toastr.success('New user Created', 'Registration Successful')
         }
         else{
-          res.error.forEach(element => {
+          res.error.forEach(element =>{
             switch(element.code){
               case 'DuplicateUsername':
                 //Username is already taken
