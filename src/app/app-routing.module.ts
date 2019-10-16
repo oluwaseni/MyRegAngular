@@ -7,21 +7,49 @@ import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './auth/auth.guard';
 import { ForbidenComponent } from './forbiden/forbiden.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { AdminRegistrationComponent } from './user/admin-registration/admin-registration.component';
+import { UserRegistrationComponent } from './user/user-registration/user-registration.component';
+import { PaymentComponent } from './admin-panel/payment/payment.component';
+import { MortgageComponent } from './admin-panel/mortgage/mortgage.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { PropertiesComponent } from './properties/properties.component';
+import { PropertyDetailsComponent } from './property-details/property-details.component';
 
 
 const routes: Routes = [
 
   {path: '', redirectTo: 'user/login', pathMatch: 'full'},
+  {path: 'user/registration', redirectTo: 'user/registration/user-registration', pathMatch: 'full'},
+  {path: 'home/admin', redirectTo: 'home/admin/payment', pathMatch: 'full'},
+  {path: 'home', redirectTo: 'home/dashboard', pathMatch: 'full'},
   {
     path: 'user', component: UserComponent,
     children: [
-      {path: 'registration', component: RegistrationComponent},
+      {path: 'registration', component: UserRegistrationComponent,
+
+        children: [
+          {path: 'admin-registration', component: AdminRegistrationComponent },
+          {path: 'user-registration', component: RegistrationComponent }
+        ]
+      },
       {path: 'login', component: LoginComponent}
     ]
 },
-{path:'home', component:HomeComponent, canActivate: [AuthGuard]},
-{path:'forbiden', component:ForbidenComponent},
-{path:'admin', component:AdminPanelComponent, canActivate: [AuthGuard], data:{permittedRoles:['Admin']}}
+{
+  path:'home', component:HomeComponent, canActivate: [AuthGuard], 
+  children:[
+    {path:'forbiden', component:ForbidenComponent},
+    {path:'dashboard', component:DashboardComponent},
+    {path:'properties', component:PropertiesComponent},
+    {path:'properties/:id', component:PropertyDetailsComponent},
+    {path:'admin', component:AdminPanelComponent, canActivate: [AuthGuard], data:{permittedRoles:['Admin']},
+    children: [
+        {path:'payment', component:PaymentComponent},
+        {path: 'mortgage', component: MortgageComponent}
+    ]
+  }
+]},
+
 ];
 
 @NgModule({

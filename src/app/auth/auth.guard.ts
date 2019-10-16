@@ -31,7 +31,7 @@ export class AuthGuard implements CanActivate {
         if(this.service.roleMatch(roles))return true;
         else
         {
-          this.router.navigate(['/forbiden']);
+          this.router.navigate(['/home/forbiden']);
           return false;
         }
       }

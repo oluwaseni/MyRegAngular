@@ -17,6 +17,14 @@ import { HomeComponent } from './home/home.component';
 import { AuthInterceptor } from './auth/AuthInterceptor';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { ForbidenComponent } from './forbiden/forbiden.component';
+import { AdminRegistrationComponent } from './user/admin-registration/admin-registration.component';
+import { UserRegistrationComponent } from './user/user-registration/user-registration.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { AboutComponent } from './about/about.component';
+import { PropertiesComponent } from './properties/properties.component';
+import { MortgageComponent } from './admin-panel/mortgage/mortgage.component';
+import { PaymentComponent } from './admin-panel/payment/payment.component';
+import { PropertyDetailsComponent } from './property-details/property-details.component';
 
 
 @NgModule({
@@ -28,7 +36,15 @@ import { ForbidenComponent } from './forbiden/forbiden.component';
     LoginComponent,
     HomeComponent,
     AdminPanelComponent,
-    ForbidenComponent
+    ForbidenComponent,
+    AdminRegistrationComponent,
+    UserRegistrationComponent,
+    DashboardComponent,
+    AboutComponent,
+    PropertiesComponent,
+    MortgageComponent,
+    PaymentComponent,
+    PropertyDetailsComponent
   ],
   imports: [
     BrowserModule,

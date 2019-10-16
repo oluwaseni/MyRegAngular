@@ -18,6 +18,13 @@
                 <label>Full name</label>
                 <input type="text" class="form-control" formControlName="Fullname">
             </div>
+            <div class="form-group required">
+                    <label>Bank Sort Code</label>
+                    <input type="text" class="form-control" formControlName="sortCode">
+                    <label class="text-danger" *ngIf="service.formModel.get('sortCode').touched && service.formModel.get('sortCode').errors?.required">
+                        This field is required
+                    </label>
+            </div>
             <div formGroupName="Passwords">
                 <div class="form-group required">
                     <label>Password</label>
@@ -31,7 +38,7 @@
                 </div>
                 <div class="form-group required">
                     <label>Confirm Password</label>
-                    <input type="password" class="form-control" formControlName="ConfirmPassword">
+                    <input type="password" class="form-control" formControlName="ConfirmPassword"/>
                     <label class="text-danger" *ngIf="service.formModel.get('Passwords.ConfirmPassword').touched && service.formModel.get('Passwords.ConfirmPassword').errors?.required">
                         This field is required
                     </label>
@@ -39,6 +46,7 @@
                         Password does not match
                     </label>
                 </div>
+               
             </div>
             <div class="form-row">
                 <div class="form-group col-md-8 offset-md-2">
@@ -46,6 +54,6 @@
                 </div>
             </div>
         </form>
-        <router-outlet><router-outlet>
+     
   
         

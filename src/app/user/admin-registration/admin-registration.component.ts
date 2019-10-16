@@ -1,34 +1,25 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/shared/user.service';
 import { ToastrService } from 'ngx-toastr';
-import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-registration',
-  templateUrl: './registration.component.html',
-  styleUrls: []
+  selector: 'app-admin-registration',
+  templateUrl: './admin-registration.component.html',
+  styles: []
 })
-export class RegistrationComponent implements OnInit {
+export class AdminRegistrationComponent implements OnInit {
 
-
-  // element: any={}
-
-  // formModel?: any ={}
-  constructor(public service:UserService, private toastr: ToastrService, private router: Router) { }
-
-  formModel?: any ={}
+  constructor(private router:Router, private service: UserService, private toastr: ToastrService) { }
 
   ngOnInit() {
-
-    
     if(localStorage.getItem('token') != null)
     this.router.navigateByUrl('/home');
     
   }
 
-
   onSubmit(){
-    this.service.registration().subscribe(
+    this.service.adminRegistration().subscribe(
       (res: any) =>{
         if(res.succeeded){
           this.service.formModel.reset();
