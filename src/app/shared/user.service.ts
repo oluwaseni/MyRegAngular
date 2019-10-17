@@ -178,11 +178,11 @@ export class UserService {
   }
 
 
-  GetMortgagedHoused(id){
-    return this.http.get(this.baseURI+'/PropertyMortgages')
-    .toPromise()
-    .then(res => this.list = res as any[]);
-  }
+  // GetMortgagedHoused(id){
+  //   return this.http.get(this.baseURI+'/PropertyMortgages')
+  //   .toPromise()
+  //   .then(res => this.list = res as any[]);
+  // }
 
 
 

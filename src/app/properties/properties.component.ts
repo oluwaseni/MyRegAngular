@@ -16,9 +16,7 @@ export class PropertiesComponent implements OnInit {
   }
 
   getProperty(id){
-    // this.service.GetMortgagedHouse(id)
-    //   this.router.navigate(['/home/properties/'+ id]);
-    // }
+    
     this.router.navigate(['/home/properties/'+ id]);
     
   }
